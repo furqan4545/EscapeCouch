@@ -3,7 +3,7 @@
 Gamified push-up app, content first. Two tracks run in this folder, often in parallel chats:
 
 - **Video template** (`pose/`, `engine/`, `render/`): turns a phone clip of push-ups into a ready-to-post Flappy-style game video. Read `docs/CONTEXT.md`: the decision, the evidence, the template spec, every knob and every command.
-- **iOS app**: the live game. Read `docs/APP_BRIEF.md` first, then `docs/CONTEXT.md`.
+- **iOS app** (`ios-app/`, bare React Native + TypeScript, no Expo): the live game. Read `docs/APP_BRIEF.md` first, then `docs/CONTEXT.md`. Run commands in `ios-app/README.md`.
 
 `engine/` is shared by both: any change must keep `npx tsc -p .` passing and the video renderer's output unchanged.
 

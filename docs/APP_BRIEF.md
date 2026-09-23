@@ -15,7 +15,7 @@ Why this app, in one line: Push Up Arena showed the loop (the app's own screen i
 - **iOS only for now. iPhone X and newer.** The iPhone X tops out at iOS 16, so the deployment target is **iOS 16.0**. Check that every framework and the Xcode version can build for 16.0 before committing to them.
 - **Performance floor: iPhone X (A11 chip).** Camera, on-device pose (and face, if used live) and the game must hold 30 fps there. Test on the oldest phone available; the owner's phone is much newer.
 - Portrait, front camera, phone on the floor about 1 to 1.5 m in front of the player. Real framing: `public/IMG_0889.MOV` (76 s take, 1080x1920).
-- This Mac: Xcode 26.5 (17F42), iOS 26.2 simulator runtime, Node 22.11, npm 11.9. The owner's iPhone shows in Xcode as "Ali" (iOS 26.4.2). The simulator has no camera: anything camera-related is tested on the phone.
+- This Mac: Xcode 26.5 (17F42), iOS 26.2 simulator runtime, Node 22.11, npm 11.9. The owner's iPhone shows in Xcode as "Ali" (iPhone 17 Pro Max, iOS 26.7 as of 23 Sep, developer mode on). Building for any iPhone needs the iOS 26.5 platform component installed in Xcode (installed 23 Sep). The simulator has no camera: anything camera-related is tested on the phone.
 
 ## Stack constraints
 
@@ -23,14 +23,14 @@ Why this app, in one line: Push Up Arena showed the loop (the app's own screen i
   - `engine/flappy.ts`: level table, pipe geometry and scroll, ELO per lap (`DEFAULT_ELO`), give-up detection (`giveUpAt`), bird track and tilt.
   - `engine/reps.ts`: push-up rep counting from the elbow angle (down < 95°, up > 150°, 0.5 s lock-out before a rep can start).
   - `engine/pain.ts`: grimace score from face blendshapes (drives the boom zoom).
-- That points to **React Native with TypeScript (Expo or bare)**, with native modules only where the camera and the ML models need them. The model calls are native by nature; everything above them stays TypeScript. This is my recommendation, not a decision the owner has made: confirm it with him.
+- **Decided (23 Sep): bare React Native 0.87 with TypeScript, no Expo**, in `ios-app/`. The owner chose it over native Swift because an Android port comes later. Native modules only where the camera and the ML models need them; everything above them stays TypeScript. iOS 16.0 check, read from each package: React Native 0.87 needs iOS 15.1+, MediaPipeTasksVision 1.0.0 iOS 15.0+, react-native-vision-camera 5 and Reanimated 4 follow React Native, Skia 2 iOS 14.0+, Xcode 26.5 builds down to iOS 12.0. Expo SDK 56 and 57 need iOS 16.4 (ExpoModulesCore.podspec), which would drop iPhones on 16.0 to 16.3, so Expo is out; any new native library must pass the same check.
 - **Models:** the video pipeline uses Google MediaPipe (`pose/models/pose_landmarker_full.task`, 33 body points; `pose/models/face_landmarker.task`, 52 blendshapes). Using the same models on the phone (MediaPipe Tasks for iOS) means the engine's thresholds carry over unchanged. Apple's Vision body-pose detector is the other option (19 joints, different geometry): the thresholds would have to be re-measured. Check the MediaPipe iOS SDK's support for iOS 16 and its speed on an A11 early (the "lite" pose model exists if "full" is too slow).
 - **Backend: not needed for the first playable build.** When it is: the owner's default stack is Supabase (auth, Postgres with row-level security, storage) plus a worker on a Hetzner box with RabbitMQ for heavy jobs. **Payments on iOS go through Apple In-App Purchase** (App Store rule for digital content), not Stripe.
 - Nothing from HardLaunch (code, keys, accounts).
 
 ## Game spec (from the video, where it applies)
 
-- **Bird:** height = the player's head (nose) height, amplified 1.15x around a calibrated centre, smoothed (0.35); horizontal position 22% of the screen width; tilts nose-up when rising, dives when falling; wing flaps. Drawn in code: `Bird` in `render/FlappyVideo.tsx`. Never use Flappy Bird's sprites or name.
+- **Bird:** in the app (owner, 23 Sep) height = the player's shoulder height, not the head: a nod must not dodge a pipe. In the video it is the head (nose) height, amplified 1.15x around a calibrated centre, smoothed (0.35); horizontal position 22% of the screen width; tilts nose-up when rising, dives when falling; wing flaps. Drawn in code: `Bird` in `render/FlappyVideo.tsx`. Never use Flappy Bird's sprites or name.
 - **Pipes:** salmon palette (body #E98B71, light #F4A98F, dark #C4664C, rim #8E432E), body 132 px on a 1080-wide screen, 60 px caps with 13 px overhang. Drawn in code: `PipePair`.
 - **Big difference from the video:** the renderer fits each pipe's gap to where the recorded head actually was, so a recorded set always reads as a clean run. A live game cannot see the future: gaps must be generated ahead of the bird inside the player's calibrated head range (1 or 2 warm-up push-ups to measure the head's top and bottom), and hitting a pipe must have a consequence. Ask the owner: game over on the first hit, or lives?
 - **Levels:** every 15 pipes. The video's table is in on-screen pixels per second of a 1.5x-speed video (`DEFAULT_LEVELS` in `engine/flappy.ts`): L1 570 px/s with pipes 646 px apart, L2 900 px/s and 450 px apart (the reference video, measured frame by frame), L3 1000/420, L4 1100/400, L5+ 1200/380, gaps shrinking 370 → 300. A live game runs in real time, not 1.5x: start from the clip-time equivalent (divide the speeds by 1.5: L1 380 px/s, a pipe every 1.7 s) and tune on the phone with the owner.
@@ -58,7 +58,6 @@ Each run should export a 1080x1920 video that looks like the renderer's output, 
 
 ## Open decisions for the owner
 
-- React Native (my recommendation, fits the TypeScript rule) or something else.
 - Collision: game over or lives.
 - Boom zoom: replay only, or live too.
 - Pricing: Arena's hard $9.99/month paywall is hated in its reviews; a free daily run plus paid ranked play is an untested idea.

@@ -10,5 +10,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["engine/**/*.ts", "pose/**/*.ts", "render/**/*.ts", "render/**/*.tsx"]
+  "include": ["engine/**/*.ts", "pose/**/*.ts", "render/**/*.ts", "render/**/*.tsx", "ios-app/scripts/**/*.ts"]
 }
