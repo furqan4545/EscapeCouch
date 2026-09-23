@@ -1,0 +1,23 @@
+[
+  {
+    "query": "dermangelo duet",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  },
+  {
+    "query": "noahperlofit calorie comparison",
+    "status": "ok",
+    "error": null,
+    "responses": 2,
+    "itemCount": 24
+  },
+  {
+    "query": "letstestlaurence cheap vs expensive",
+    "status": "verification_required",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  }
+]

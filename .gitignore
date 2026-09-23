@@ -1,0 +1,10 @@
+node_modules/
+research/.browser-profile/
+research/raw/
+clips/
+pose/out/
+engine/out/
+render/out/
+public/render/
+.DS_Store
+public/*.MOV

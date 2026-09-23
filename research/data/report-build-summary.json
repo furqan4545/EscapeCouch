@@ -1,0 +1,41 @@
+{
+  "collectedFrom": "2026-09-21T15:57:19.774Z",
+  "collectedTo": "2026-09-21T16:02:39.154Z",
+  "uniquePosts": 425,
+  "uniqueCreators": 340,
+  "uniqueQueries": 21,
+  "photoPosts": 126,
+  "videoPosts": 299,
+  "queries": {
+    "app.calscanner": 12,
+    "before after cleaning": 13,
+    "blind ranking exercises": 13,
+    "blind ranking food": 24,
+    "calorie comparison": 24,
+    "cheap vs expensive": 12,
+    "dermangelo duet": 12,
+    "expectation vs reality gym": 13,
+    "fitness myth reaction": 111,
+    "guess the price": 13,
+    "letstestlaurence cheap vs expensive": 12,
+    "life hack reaction": 12,
+    "noahperlofit calorie comparison": 24,
+    "nolan.labuda calories": 12,
+    "rating protein snacks": 24,
+    "same calories different food": 16,
+    "seamless transition ad": 24,
+    "skincare reaction": 24,
+    "testing viral hacks": 12,
+    "two types of people gym": 13,
+    "viral clip transition": 13
+  },
+  "method": "Public TikTok ranked search pages opened with Microsoft Playwright. Metadata from responses delivered to the browser. No complete consecutive profile sample.",
+  "limitations": [
+    "Ranked search selection bias; not a viral hit-rate dataset.",
+    "Public counts can be rounded or cached.",
+    "Follower counts are current, not historical.",
+    "Paid promotion status is unknown.",
+    "Full clip inspection paused after TikTok verification challenge.",
+    "Query labels are discovery lanes, not validated template labels."
+  ]
+}

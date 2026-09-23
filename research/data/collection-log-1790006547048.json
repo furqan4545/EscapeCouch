@@ -1,0 +1,16 @@
+[
+  {
+    "query": "app.calscanner",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  },
+  {
+    "query": "nolan.labuda calories",
+    "status": "verification_required",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  }
+]

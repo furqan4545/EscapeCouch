@@ -1,0 +1,86 @@
+[
+  {
+    "query": "seamless transition ad",
+    "status": "ok",
+    "error": null,
+    "responses": 2,
+    "itemCount": 24
+  },
+  {
+    "query": "viral clip transition",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 13
+  },
+  {
+    "query": "life hack reaction",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  },
+  {
+    "query": "fitness myth reaction",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 111
+  },
+  {
+    "query": "same calories different food",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 16
+  },
+  {
+    "query": "calorie comparison",
+    "status": "ok",
+    "error": null,
+    "responses": 2,
+    "itemCount": 24
+  },
+  {
+    "query": "blind ranking food",
+    "status": "ok",
+    "error": null,
+    "responses": 2,
+    "itemCount": 24
+  },
+  {
+    "query": "blind ranking exercises",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 13
+  },
+  {
+    "query": "cheap vs expensive",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 12
+  },
+  {
+    "query": "guess the price",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 13
+  },
+  {
+    "query": "expectation vs reality gym",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 13
+  },
+  {
+    "query": "before after cleaning",
+    "status": "ok",
+    "error": null,
+    "responses": 1,
+    "itemCount": 13
+  }
+]

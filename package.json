@@ -1,0 +1,35 @@
+{
+  "name": "mob-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Gamified push-up app: pose pass, game engine, HUD renderer, research",
+  "scripts": {
+    "pose": "tsx pose/extract.ts",
+    "engine": "tsx engine/cli.ts",
+    "plot": "tsx engine/plot.ts",
+    "render:prepare": "tsx render/prepare.ts",
+    "render": "remotion render render/index.ts match",
+    "studio": "remotion studio render/index.ts",
+    "typecheck": "tsc -p .",
+    "research:probe": "node research/scripts/probe.mjs",
+    "research:collect": "node research/scripts/collect.mjs",
+    "research:report": "python3 research/scripts/build_report.py"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "^1.63.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^1.0.1",
+    "@remotion/cli": "^4.0.527",
+    "@remotion/fonts": "^4.0.527",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.527"
+  }
+}
