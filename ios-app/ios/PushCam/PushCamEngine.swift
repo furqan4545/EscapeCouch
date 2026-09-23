@@ -33,7 +33,7 @@ import UIKit
     DispatchQueue.main.async { UIApplication.shared.isIdleTimerDisabled = true }
     AVCaptureDevice.requestAccess(for: .video) { granted in
       guard granted else {
-        self.onError?("Camera access is off. Turn it on in Settings > MobApp > Camera.")
+        self.onError?("Camera access is off. Turn it on in Settings > EscapeCouch > Camera.")
         return
       }
       self.queue.async {
@@ -247,7 +247,7 @@ import UIKit
     }
     PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
       guard status == .authorized || status == .limited else {
-        DispatchQueue.main.async { done("Photos access is off. Turn it on in Settings > MobApp > Photos.") }
+        DispatchQueue.main.async { done("Photos access is off. Turn it on in Settings > EscapeCouch > Photos.") }
         return
       }
       PHPhotoLibrary.shared().performChanges({

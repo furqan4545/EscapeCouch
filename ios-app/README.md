@@ -1,4 +1,6 @@
-# MobApp (iOS app)
+# EscapeCouch (iOS app)
+
+Players see "EscapeCouch" (home screen name, welcome screen). The Xcode project, scheme and folder keep the internal name MobApp; the bundle id stays com.furqanali.mobapp (changing it after release is painful and users never see it).
 
 The live push-up game. Bare React Native 0.87 with TypeScript, no Expo (Expo SDK 56+ needs iOS 16.4; our floor is iOS 16.0 for the iPhone X). The game rules come from `../engine/`, shared with the video renderer; Metro watches that folder (`metro.config.js`).
 

@@ -171,7 +171,7 @@ function Welcome({ scared, onGo, onScared }: { scared: string | null; onGo: () =
           <Bird x={100} y={86} width={180} flap={Math.floor(sec * 9) % 3} blink={blinkAt(sec)} tilt={-8} />
         </Svg>
       </Animated.View>
-      <Text style={styles.hero}>MOB</Text>
+      <Text style={styles.hero}>{'ESCAPE\nCOUCH'}</Text>
       <Text style={styles.lead}>The push-up game where your body is the joystick (the controller).</Text>
       <Text style={styles.small}>Side effects may include: arms (you get stronger).</Text>
       <Pressable style={styles.button} onPress={onGo}>
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
   dots: { flexDirection: 'row', gap: 8 },
   dot: { width: 10, height: 10, borderRadius: 5, backgroundColor: 'rgba(255, 231, 194, 0.3)' },
   dotOn: { backgroundColor: '#FFC53D', width: 28 },
-  hero: { fontFamily: FONT, fontSize: 92, color: '#FFC53D', textShadowColor: INK, textShadowOffset: { width: 0, height: 8 }, textShadowRadius: 1 },
+  hero: { fontFamily: FONT, fontSize: 76, lineHeight: 78, textAlign: 'center', marginTop: 6, color: '#FFC53D', textShadowColor: INK, textShadowOffset: { width: 0, height: 8 }, textShadowRadius: 1 },
   title: { fontFamily: FONT, fontSize: 30, color: '#fff', textAlign: 'center', ...outline },
   subTitle: { fontSize: 24, marginTop: 24 },
   plain: { fontFamily: FONT, fontSize: 16, color: CREAM, opacity: 0.8, marginTop: 2 },
