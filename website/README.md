@@ -1,10 +1,10 @@
 # EscapeCouch launch website
 
-The public founder-pass landing page, built with Next.js and deployed on Vercel. This directory is independent of the React Native app and video-rendering tools elsewhere in this repository.
+The public founder-pass preorder page, built with Next.js and deployed on Vercel. This directory is independent of the React Native app and video-rendering tools elsewhere in this repository.
 
 ## Development
 
-Use Node 24, run `npm ci`, copy `.env.example` to `.env.local`, and run `npm run dev`. Production validation: `npm run build`, then `npm start -- --port 3217` and `npm test`. The integration tests use disposable `codex-api-…@example.com` records in the configured database; remove those records after verification.
+Use Node 24, run `npm ci`, copy `.env.example` to `.env.local`, and run `npm run dev`. Production validation: `npm run build`, then `npm start -- --port 3217` and `npm test`. The integration checks confirm that free signup is closed and checkout still redirects correctly. They do not create signup records.
 
 ## Deployment
 
@@ -16,30 +16,18 @@ Use Node 24, run `npm ci`, copy `.env.example` to `.env.local`, and run `npm run
 
 Configure `STRIPE_PAYMENT_LINK`, `FOUNDER_OFFER_OPEN`, `WAITLIST_DATABASE_URL`, and `WAITLIST_HASH_SECRET` in Vercel. The database URL and hash secret are server-only secrets. No credentials belong in Git. `SITE_URL` is optional; otherwise metadata uses Vercel’s production hostname.
 
-## Waitlist
+## Retired free waitlist
 
-Records live in the existing EscapeCouch Supabase database, under the isolated `escapecouch_launch` schema. `db/001_waitlist.sql` creates the tables and signup function. It does not alter the mobile app’s schema. The runtime database login receives only schema usage and execution of `register_waitlist(text,text,text,text,text)`; it cannot list waitlist emails. Provision this login separately and use the Supabase transaction pooler with TLS and the bundled public CA certificate.
-
-The API validates email/platform/consent, rejects cross-origin requests, caps request size, ignores honeypot submissions, normalizes duplicate emails, and limits an IP-derived hash to 10 attempts per 15-minute bucket. Raw IP addresses are not stored. Expired hashes are removed during subsequent requests. Waitlist messages are not sent automatically.
-
-Owners can export or delete signups using their admin database access. Example read query:
-
-```sql
-select email, platform, source, campaign, consent_version, created_at
-from escapecouch_launch.waitlist
-order by created_at;
-```
-
-The original Sites database was empty when this Vercel copy was prepared on October 14, 2026. The older Sites URL remains a separate deployment; promote the Vercel URL in new marketing links.
+The free waitlist UI has been removed. `/api/waitlist` returns HTTP 410 and no longer writes records. Previously collected records remain private in `escapecouch_launch.waitlist`; no signup data was deleted. The original migration and restricted database helper are retained for maintenance. The public preorder flow uses Stripe only.
 
 ## Founder offer and checkout
 
 - Pay **US$9.30 now** for the first full 12 months of paid challenge hosting.
 - The paid year starts at activation when paid hosting launches, not on purchase.
-- Founder renewal price remains **US$9.30/year for life**. This is not lifetime access or a first-year-only discount.
+- Founder renewal price remains **US$9.30 each year, with no increase to that buyer’s annual price**. This is not lifetime access or a first-year-only discount.
 - Planned standard annual price: **US$30.99**. The approximately 70% comparison is with a planned price, not a previously charged price.
 - New buyers can claim the offer **before launch only**. No launch date is promised.
-- Checkout takes a one-time payment. Future automatic renewal needs the buyer’s agreement at activation. Full refunds are available before activation.
+- Checkout takes a one-time payment. Future automatic renewal needs the buyer’s agreement at activation. A 100% refund is available before activation and within 7 days of paid access starting after launch. Requests go to support@escapecouch.com from the checkout email; a refund cancels access and the founder-price entitlement.
 
 Stripe Payment Link: `https://buy.stripe.com/dRmeVe0pAcjW6EC4GPgbm00`.
 Product: `prod_VR2iYsbgZFTwLH`; price: `price_1UQAd7Kwk5Y1UZoviG2kWqqA`; link: `plink_1UQAfTKwk5Y1UZovR7mRI3ZH`.
